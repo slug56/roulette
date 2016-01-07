@@ -1,5 +1,7 @@
 package uk.co.sleader.roulette;
 
+import uk.co.sleader.roulette.exceptions.RouletteGameException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,8 @@ public class Game {
         return table;
     }
 
-    public Bet placeBet(Customer customer, Selection selection, int wager) {
+    public Bet placeBet(Customer customer, Selection selection, int wager) throws RouletteGameException {
+        // TODO Don't return null at all. Throw exception of customer doesn't have funds
         Bet bet = null;
         // Verify customer has enough chips to cover the stake
         if (customer.earmark(wager)) {
@@ -62,6 +65,7 @@ public class Game {
         }
         // Losers
         for (Bet lose : spin.getLosingBets()) {
+            // TODO If house number, identify stakes where only half the bet is returned
             // Retain original stake
            lose.getCustomer().collectEarmark(lose.getStake());
         }

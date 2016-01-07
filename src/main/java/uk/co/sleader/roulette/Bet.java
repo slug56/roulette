@@ -1,5 +1,7 @@
 package uk.co.sleader.roulette;
 
+import uk.co.sleader.roulette.exceptions.RouletteGameException;
+
 /**
  * Ties together a specific customer, the number(s) they've chosen and the monetary value they're staking.
  */
@@ -9,7 +11,10 @@ public class Bet {
     private Selection selection;
     private int stake;
 
-    public Bet(Customer customer, Selection selection , int stake) {
+    public Bet(Customer customer, Selection selection , int stake) throws RouletteGameException {
+        if (!validateBet(stake)) {
+            throw new RouletteGameException(String.format("Stake of %s is not valid. Must be >=0", stake));
+        }
         this.customer = customer;
         this.selection = selection;
         this.stake = stake;
@@ -34,6 +39,11 @@ public class Bet {
 
     public int getStake() {
         return stake;
+    }
+
+    public static boolean validateBet(int stake) {
+        //TODO Given the Table object, could also verify bet is within the constraints of any min/max bets
+        return stake > 0;
     }
 
 }

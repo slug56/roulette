@@ -13,6 +13,6 @@ public class Pocket {
     private int numeric;
     private Colour colour;
     private int row; // 0 = House
-    private int column // 1 = First, 2 = Second
+    private int column; // 1 = First, 2 = Second
 
 }
