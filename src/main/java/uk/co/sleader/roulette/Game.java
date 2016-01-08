@@ -1,6 +1,8 @@
 package uk.co.sleader.roulette;
 
 import uk.co.sleader.roulette.exceptions.IllegalBetException;
+import uk.co.sleader.roulette.tables.FrenchTable;
+import uk.co.sleader.roulette.tables.Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +18,14 @@ public class Game {
 
     public Game() {
         // Default table
-        this(new EuropeanTable());
-        // Initialise the first round
-        currentSpin = new Spin();
-        history = new ArrayList<>();
+        this(new FrenchTable());
     }
 
     public Game(Table table) {
         this.table = table;
+        // Initialise the first round
+        currentSpin = new Spin();
+        history = new ArrayList<>();
     }
 
     public Table getTable() {

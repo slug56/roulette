@@ -1,10 +1,12 @@
-package uk.co.sleader.roulette;
+package uk.co.sleader.roulette.tables;
+
+import uk.co.sleader.roulette.Pocket;
+import uk.co.sleader.roulette.Pocket.Colour;
+import uk.co.sleader.roulette.SelectionFactory;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import uk.co.sleader.roulette.Pocket.Colour;
 
 /**
  * Created by sleader on 05/01/2016.
@@ -40,7 +42,7 @@ public class EuropeanTable implements Table {
 
     @Override
     public boolean isHalfStakeOnLosingOutsideBets() {
-        return true;
+        return false;
     }
 
     private void initialisePockets() {

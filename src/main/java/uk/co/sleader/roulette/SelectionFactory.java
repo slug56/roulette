@@ -1,6 +1,7 @@
 package uk.co.sleader.roulette;
 
 import uk.co.sleader.roulette.exceptions.IllegalSelectionException;
+import uk.co.sleader.roulette.tables.Table;
 
 import java.util.Arrays;
 
