@@ -3,20 +3,11 @@ package uk.co.sleader.roulette;
 /**
  * Created by sleader on 05/01/2016.
  */
-public class Table {
+public interface Table {
 
-    private SelectionFactory selectionFactory;
+    public SelectionFactory getSelectionFactory();
 
-    public Table() {
-       selectionFactory = new SelectionFactory();
-    }
+    public String throwBall();
 
-    public SelectionFactory getSelectionFactory() {
-        return selectionFactory;
-    }
-
-    public String throwBall() {
-        // TODO Throw an actual pocket number (random)
-        return "11";
-    }
+    public Pocket lookupPocket(String identifier);
 }

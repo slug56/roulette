@@ -4,8 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import uk.co.sleader.roulette.exceptions.RouletteGameException;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by sleader on 05/01/2016.
  */
@@ -30,7 +28,7 @@ public class StageTwoTest {
 
     @Test(expected = RouletteGameException.class)
     public void betEqualToZeroThrowsRouletteGameException() throws RouletteGameException {
-
+        // TODO Expecting exception. but only on placeBet and not on creating the selection
         // Given a customer has placed a bet
         // When that bet is less than or equal to £0
         Selection selection = selections.straightBet("12");
@@ -40,10 +38,16 @@ public class StageTwoTest {
 
     @Test(expected = RouletteGameException.class)
     public void betOfLessThanZeroThrowsRouletteGameException() throws RouletteGameException {
+        // TODO Expecting exception. but only on placeBet and not on creating the selection
         // Given a customer has placed a bet
         // When that bet is less than or equal to £0
         Selection selection = selections.straightBet("12");
         game.placeBet(customer, selection, -1000);
+
+        // Test boundaries also
+        customer.deposit(1000);
+        game.placeBet(customer, selection, -1);
+        game.placeBet(customer, selection, Integer.MIN_VALUE);
         // Then the application will throw a RouletteGameException with a suitable message
     }
 

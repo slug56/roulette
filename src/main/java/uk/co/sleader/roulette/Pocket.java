@@ -5,7 +5,7 @@ package uk.co.sleader.roulette;
  */
 public class Pocket {
 
-    private enum Colour {
+    public enum Colour {
         RED, BLACK, GREEN;
     }
 
@@ -14,5 +14,13 @@ public class Pocket {
     private Colour colour;
     private int row; // 0 = House
     private int column; // 1 = First, 2 = Second
+
+    public Pocket(String identifier, int numeric, Colour colour, int row, int column) {
+        this.identifier = identifier;
+        this.numeric = numeric;
+        this.colour = colour;
+        this.row = row;
+        this.column = column;
+    }
 
 }

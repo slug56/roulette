@@ -30,9 +30,9 @@ public class StageOneTest {
 
     @Test
     public void losingStraightBetReturnsNoWinnings() {
-        // Given a customer places a bet of £10 on a pocket
-        Selection selection = selections.straightBet("12");
         try {
+            // Given a customer places a bet of £10 on a pocket
+            Selection selection = selections.straightBet("12");
             Bet losingBet = game.placeBet(customer, selection, 1000);
 
             // When I spin the roulette wheel and ball lands in a losing pocket
@@ -49,9 +49,9 @@ public class StageOneTest {
 
     @Test
     public void winningStraightBetReturnsWinnings() {
-        // Given a customer places a bet of £10 on a pocket
-        Selection selection = selections.straightBet("11");
         try {
+            // Given a customer places a bet of £10 on a pocket
+            Selection selection = selections.straightBet("11");
             Bet winningBet = game.placeBet(customer, selection, 1000);
             // When I spin the roulette wheel and the ball lands in a winning pocket
             String winningPocket = game.spin("11");

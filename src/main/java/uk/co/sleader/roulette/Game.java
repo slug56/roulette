@@ -15,7 +15,7 @@ public class Game {
     private List<Spin> history;
 
     public Game() {
-        table = new Table();
+        table = new EuropeanTable();
         // Initialise the first round
         currentSpin = new Spin();
         history = new ArrayList<>();
