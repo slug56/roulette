@@ -1,7 +1,6 @@
 package uk.co.sleader.roulette;
 
 import uk.co.sleader.roulette.exceptions.IllegalBetException;
-import uk.co.sleader.roulette.exceptions.RouletteGameException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +15,15 @@ public class Game {
     private List<Spin> history;
 
     public Game() {
-        table = new EuropeanTable();
+        // Default table
+        this(new EuropeanTable());
         // Initialise the first round
         currentSpin = new Spin();
         history = new ArrayList<>();
+    }
+
+    public Game(Table table) {
+        this.table = table;
     }
 
     public Table getTable() {
@@ -37,16 +41,17 @@ public class Game {
         return bet;
     }
 
-    public void spin() {
-        spin(table.throwBall());
+    public Pocket spin() {
+        return spin(table.throwBall());
     }
 
     /**
      * Make a spin and use the defined winning pocket at the outcome
+     *
      * @param winningPocket
      * @return
      */
-    public String spin(String winningPocket) {
+    public Pocket spin(Pocket winningPocket) {
         // TODO Close bets
         currentSpin.setWinningPocket(winningPocket);
         processBets(currentSpin);
@@ -67,8 +72,14 @@ public class Game {
         // Losers
         for (Bet lose : spin.getLosingBets()) {
             // TODO If house number, identify stakes where only half the bet is returned
-            // Retain original stake
-           lose.getCustomer().collectEarmark(lose.getStake());
+            if (spin.getWinningPocket().isHouse() && table.isHalfStakeOnLosingOutsideBets()) {
+                final int stake = lose.getStake();
+                lose.getCustomer().collectPartialEarmark(stake, stake / 2);
+            } else {
+                // Retain original stake
+                lose.getCustomer().collectEarmark(lose.getStake());
+            }
         }
     }
+
 }

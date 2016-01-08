@@ -31,7 +31,7 @@ public class StageTwoTest {
     }
 
     @Test(expected = IllegalBetException.class)
-    public void betEqualToZeroThrowsRouletteGameException() throws RouletteGameException {
+    public void testBetEqualToZeroThrowsRouletteGameException() throws RouletteGameException {
         // TODO Expecting exception. but only on placeBet and not on creating the selection
         // Given a customer has placed a bet
         // When that bet is less than or equal to £0
@@ -41,7 +41,7 @@ public class StageTwoTest {
     }
 
     @Test
-    public void betOfLessThanZeroThrowsRouletteGameException() {
+    public void testBetOfLessThanZeroThrowsRouletteGameException() {
         // TODO Expecting exception. but only on placeBet and not on creating the selection
         try {
             // Given a customer has placed a bet
@@ -73,7 +73,7 @@ public class StageTwoTest {
     }
 
     @Test
-    public void betOnInvalidPocketThrowsRouletteGameException() {
+    public void testBetOnInvalidPocketThrowsRouletteGameException() {
         try {
             // Given a customer has placed a bet
             // When a customer has selected an invalid pocket

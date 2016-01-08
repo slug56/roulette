@@ -29,14 +29,15 @@ public class StageOneTest {
     }
 
     @Test
-    public void losingStraightBetReturnsNoWinnings() {
+    public void testLosingStraightBetReturnsNoWinnings() {
         try {
             // Given a customer places a bet of £10 on a pocket
             Selection selection = selections.straightBet("12");
             Bet losingBet = game.placeBet(customer, selection, 1000);
 
             // When I spin the roulette wheel and ball lands in a losing pocket
-            String winningPocket = game.spin("11");
+            Pocket winningPocket = selections.lookupPocket("11");
+           game.spin(winningPocket);
 
             // Then the customer will receive £0 winnings
             assertFalse(losingBet.isWinner(winningPocket));
@@ -48,13 +49,14 @@ public class StageOneTest {
     }
 
     @Test
-    public void winningStraightBetReturnsWinnings() {
+    public void testWinningStraightBetReturnsWinnings() {
         try {
             // Given a customer places a bet of £10 on a pocket
             Selection selection = selections.straightBet("11");
             Bet winningBet = game.placeBet(customer, selection, 1000);
             // When I spin the roulette wheel and the ball lands in a winning pocket
-            String winningPocket = game.spin("11");
+            Pocket winningPocket = selections.lookupPocket("11");
+            game.spin(winningPocket);
 
             // Then the customer will receive £360 winnings
             assertTrue(winningBet.isWinner(winningPocket));

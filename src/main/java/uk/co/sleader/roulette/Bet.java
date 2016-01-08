@@ -25,12 +25,12 @@ public class Bet {
        return selection.getPayoff() * stake;
     }
 
-    public int calculateActualProfit(String winningPocket) {
+    public int calculateActualProfit(Pocket winningPocket) {
         // Calculate payoff if a winner, otherwise a losing bet reaps no rewards
         return isWinner(winningPocket) ? (selection.getPayoff() * stake) : 0;
     }
 
-    public boolean isWinner(String winningPocket) {
+    public boolean isWinner(Pocket winningPocket) {
         return selection.contains(winningPocket);
     }
 

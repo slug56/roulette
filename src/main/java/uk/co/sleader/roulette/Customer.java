@@ -40,6 +40,7 @@ public class Customer {
     }
 
     public synchronized void collectPartialEarmark(int wager, int houseCut) {
+        // TODO Not really representing partial earmarks in this game...
         // In the case of a bet on RED when a house number comes up
         // TODO houseCut must be <= wager (usually half)
         earmarkedBalance -= wager;

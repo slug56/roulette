@@ -1,5 +1,6 @@
 package uk.co.sleader.roulette;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,13 +24,23 @@ public class EuropeanTable implements Table {
         initialisePockets();
     }
 
-    public String throwBall() {
+    public Pocket throwBall() {
         // TODO Throw an actual pocket number (random)
-        return "11";
+        return lookupPocket("11");
     }
 
     public Pocket lookupPocket(String identifier) {
         return pockets.get(identifier);
+    }
+
+    @Override
+    public Collection<Pocket> getPockets() {
+        return pockets.values();
+    }
+
+    @Override
+    public boolean isHalfStakeOnLosingOutsideBets() {
+        return true;
     }
 
     private void initialisePockets() {

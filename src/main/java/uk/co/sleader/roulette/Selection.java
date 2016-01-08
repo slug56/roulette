@@ -10,17 +10,17 @@ import java.util.Set;
 public class Selection {
 
     private String name;
-    private Set<String> pockets;
+    private Set<Pocket> pockets;
     private int payoff;
 
-    public Selection(String name, int payoff, String... pockets) {
+    public Selection(String name, int payoff, Pocket... pockets) {
         this.name = name;
         this.payoff = payoff;
         this.pockets = new HashSet<>();
         this.pockets.addAll(Arrays.asList(pockets));
     }
 
-    public boolean contains(String winningPocket) {
+    public boolean contains(Pocket winningPocket) {
         return pockets.contains(winningPocket);
     }
 

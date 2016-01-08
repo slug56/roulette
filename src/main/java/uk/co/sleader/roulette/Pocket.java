@@ -23,4 +23,12 @@ public class Pocket {
         this.column = column;
     }
 
+    public int getNumeric() {
+        return numeric;
+    }
+
+    public boolean isHouse() {
+        return colour == Colour.GREEN;
+    }
+
 }

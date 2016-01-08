@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  */
 public class Spin {
 
-    private String winningPocket;
+    private Pocket winningPocket;
     private Set<Bet> bets;
 
     public Spin() {
@@ -21,8 +21,12 @@ public class Spin {
         bets.add(bet);
     }
 
-    public void setWinningPocket(String pocket) {
+    public void setWinningPocket(Pocket pocket) {
         winningPocket = pocket;
+    }
+
+    public Pocket getWinningPocket() {
+        return winningPocket;
     }
 
     public Set<Bet> getBets() {
