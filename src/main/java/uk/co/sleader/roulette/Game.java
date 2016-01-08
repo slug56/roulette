@@ -1,5 +1,6 @@
 package uk.co.sleader.roulette;
 
+import uk.co.sleader.roulette.exceptions.IllegalBetException;
 import uk.co.sleader.roulette.exceptions.RouletteGameException;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Game {
         return table;
     }
 
-    public Bet placeBet(Customer customer, Selection selection, int wager) throws RouletteGameException {
+    public Bet placeBet(Customer customer, Selection selection, int wager) throws IllegalBetException {
         // TODO Don't return null at all. Throw exception of customer doesn't have funds
         Bet bet = null;
         // Verify customer has enough chips to cover the stake

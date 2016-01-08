@@ -1,6 +1,7 @@
 package uk.co.sleader.roulette;
 
-import uk.co.sleader.roulette.exceptions.RouletteGameException;
+import uk.co.sleader.roulette.exceptions.IllegalBetException;
+import uk.co.sleader.roulette.exceptions.IllegalSelectionException;
 
 import java.util.Arrays;
 
@@ -17,10 +18,10 @@ public class SelectionFactory {
         this.table = table;
     }
 
-    public Selection straightBet(String pocket) throws RouletteGameException {
+    public Selection straightBet(String pocket) throws IllegalSelectionException {
         // Verify the pocket
         if (!isValidSelection(pocket)) {
-            throw new RouletteGameException(String.format("The specified pocket '%s' does not exist on the table", pocket));
+            throw new IllegalSelectionException(String.format("The specified pocket '%s' does not exist on the table", pocket));
         }
         return new Selection("Straight", 36, pocket);
     }

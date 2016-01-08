@@ -1,5 +1,6 @@
 package uk.co.sleader.roulette;
 
+import uk.co.sleader.roulette.exceptions.IllegalBetException;
 import uk.co.sleader.roulette.exceptions.RouletteGameException;
 
 /**
@@ -11,9 +12,9 @@ public class Bet {
     private Selection selection;
     private int stake;
 
-    public Bet(Customer customer, Selection selection , int stake) throws RouletteGameException {
+    public Bet(Customer customer, Selection selection , int stake) throws IllegalBetException {
         if (!validateBet(stake)) {
-            throw new RouletteGameException(String.format("Stake of %s is not valid. Must be >=0", stake));
+            throw new IllegalBetException(String.format("Stake of %s is not valid. Must be >=0", stake));
         }
         this.customer = customer;
         this.selection = selection;
