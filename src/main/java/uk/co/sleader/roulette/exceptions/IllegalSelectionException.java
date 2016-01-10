@@ -1,7 +1,7 @@
 package uk.co.sleader.roulette.exceptions;
 
 /**
- * Created by sleader on 08/01/2016.
+ * Indicates an invalid selection of pockets, such as trying to select a pocket which does not exist on the table.
  */
 public class IllegalSelectionException extends RouletteGameException {
 

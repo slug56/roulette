@@ -3,15 +3,18 @@ package uk.co.sleader.roulette;
 import org.junit.Before;
 import org.junit.Test;
 import uk.co.sleader.roulette.exceptions.RouletteGameException;
+import uk.co.sleader.roulette.tables.Table;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by sleader on 05/01/2016.
+ * Tests representing the acceptance criteria for Stage One of the CACI
+ * Roulette game.
  */
 public class StageOneTest {
 
     private Game game;
+    private Table table;
     private Customer customer;
     private SelectionFactory selections;
 
@@ -19,13 +22,15 @@ public class StageOneTest {
     public void setUp() {
         // Represents the notion of game on a roulette table
         game = new Game();
+        table = game.getTable();
 
         // A new customer with chips to the value of £10 (1000p)
         customer = new Customer();
         customer.deposit(1000);
 
-        // The game's table's possible selections (e.g. 12, red, 2nd half, voisins du zero)
-        selections = game.getTable().getSelectionFactory();
+        // The game's table's possible selections (e.g. 12, red, 2nd half,
+        // voisins du zero)
+        selections = table.getSelectionFactory();
     }
 
     @Test
@@ -36,15 +41,16 @@ public class StageOneTest {
             Bet losingBet = game.placeBet(customer, selection, 1000);
 
             // When I spin the roulette wheel and ball lands in a losing pocket
-            Pocket winningPocket = selections.lookupPocket("11");
-           game.spin(winningPocket);
+            Pocket winningPocket = table.lookupPocket("11");
+            game.spin(winningPocket);
 
             // Then the customer will receive £0 winnings
             assertFalse(losingBet.isWinner(winningPocket));
-            assertEquals(losingBet.calculateActualProfit(winningPocket), 0);
-            assertEquals(customer.getBalance(), 0);
+            assertEquals(0, losingBet.calculateActualProfit(winningPocket));
+            assertEquals(0, customer.getBalance());
         } catch (RouletteGameException e) {
-            fail();
+            fail("Unexpected exception");
+            e.printStackTrace();
         }
     }
 
@@ -54,16 +60,20 @@ public class StageOneTest {
             // Given a customer places a bet of £10 on a pocket
             Selection selection = selections.straightBet("11");
             Bet winningBet = game.placeBet(customer, selection, 1000);
-            // When I spin the roulette wheel and the ball lands in a winning pocket
-            Pocket winningPocket = selections.lookupPocket("11");
+
+            // When I spin the roulette wheel and the ball lands in a winning
+            // pocket
+            Pocket winningPocket = table.lookupPocket("11");
             game.spin(winningPocket);
 
             // Then the customer will receive £360 winnings
             assertTrue(winningBet.isWinner(winningPocket));
-            assertEquals(winningBet.calculateActualProfit(winningPocket), 36000);
-            assertEquals(customer.getBalance(), 37000);
+            assertEquals(36000, winningBet.calculateActualProfit(winningPocket));
+            // i.e. Return of original stake along with £360 winnings
+            assertEquals(37000, customer.getBalance());
         } catch (RouletteGameException e) {
-            fail();
+            fail("Unexpected exception");
+            e.printStackTrace();
         }
     }
 

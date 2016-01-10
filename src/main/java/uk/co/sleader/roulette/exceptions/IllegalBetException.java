@@ -1,7 +1,7 @@
 package uk.co.sleader.roulette.exceptions;
 
 /**
- * Created by sleader on 08/01/2016.
+ * Indicated an invalid bet, such as a wager which has been defined as <= 0.
  */
 public class IllegalBetException extends RouletteGameException {
 
@@ -12,5 +12,5 @@ public class IllegalBetException extends RouletteGameException {
     public IllegalBetException(String message) {
         super(message);
     }
-    
+
 }

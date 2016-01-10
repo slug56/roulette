@@ -1,7 +1,7 @@
 package uk.co.sleader.roulette.exceptions;
 
 /**
- * Created by sleader on 07/01/2016.
+ * Indicates an unexpected state in Roulette
  */
 public class RouletteGameException extends Exception {
 

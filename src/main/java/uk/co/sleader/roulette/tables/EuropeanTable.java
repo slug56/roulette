@@ -2,51 +2,25 @@ package uk.co.sleader.roulette.tables;
 
 import uk.co.sleader.roulette.Pocket;
 import uk.co.sleader.roulette.Pocket.Colour;
-import uk.co.sleader.roulette.SelectionFactory;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by sleader on 05/01/2016.
+ * A European roulette table is characterised by a single house number - 0.
+ * Some of the pockets' colours also vary from the US equivalent.
  */
-public class EuropeanTable implements Table {
+public class EuropeanTable extends GeneralTable {
 
-    private Map<String, Pocket> pockets;
+    /**
+     * Generate the Pockets under the Table
+     * @return the Pocket objects under this Table
+     */
+    public Map<String, Pocket> getPocketMap() {
+        // Only required if there isn't currently a map
+        if (pockets != null) return pockets;
 
-    private SelectionFactory selectionFactory;
-
-    public SelectionFactory getSelectionFactory() {
-        return selectionFactory;
-    }
-
-    public EuropeanTable() {
-        selectionFactory = new SelectionFactory(this);
-        initialisePockets();
-    }
-
-    public Pocket throwBall() {
-        // TODO Throw an actual pocket number (random)
-        return lookupPocket("11");
-    }
-
-    public Pocket lookupPocket(String identifier) {
-        return pockets.get(identifier);
-    }
-
-    @Override
-    public Collection<Pocket> getPockets() {
-        return pockets.values();
-    }
-
-    @Override
-    public boolean isHalfStakeOnLosingOutsideBets() {
-        return false;
-    }
-
-    private void initialisePockets() {
-        pockets = new HashMap<>();
+        Map<String, Pocket> pockets = new HashMap<>();
         pockets.put("0", new Pocket("0", 0, Colour.GREEN, 0, 1));
         pockets.put("1", new Pocket("1", 1, Colour.RED, 1, 1));
         pockets.put("2", new Pocket("2", 2, Colour.BLACK, 1, 2));
@@ -69,7 +43,7 @@ public class EuropeanTable implements Table {
         pockets.put("19", new Pocket("19", 19, Colour.RED, 7, 1));
         pockets.put("20", new Pocket("20", 20, Colour.BLACK, 7, 2));
         pockets.put("21", new Pocket("21", 21, Colour.RED, 7, 3));
-        pockets.put("22", new Pocket("22", 22, Colour.BLACK,8,  1));
+        pockets.put("22", new Pocket("22", 22, Colour.BLACK, 8, 1));
         pockets.put("23", new Pocket("23", 23, Colour.RED, 8, 2));
         pockets.put("24", new Pocket("24", 24, Colour.BLACK, 8, 3));
         pockets.put("25", new Pocket("25", 25, Colour.RED, 9, 1));
@@ -84,5 +58,6 @@ public class EuropeanTable implements Table {
         pockets.put("34", new Pocket("34", 34, Colour.RED, 12, 1));
         pockets.put("35", new Pocket("35", 35, Colour.BLACK, 12, 2));
         pockets.put("36", new Pocket("36", 36, Colour.RED, 12, 3));
+        return pockets;
     }
 }
