@@ -1,4 +1,5 @@
-Stuart Leader's submission to the CACI technical test (roulette)
+Stuart Leader's submission to a technical test for a job application
+TD;DR - Implement a roulette game using TDD
 =======
 Original Specification
 -----------
